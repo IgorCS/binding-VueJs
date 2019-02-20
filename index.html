@@ -5,46 +5,63 @@
      <title>Lista de livros</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
      <link rel="stylesheet" href="css/index.css" />
-   </head>
+   </head>  
+       
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js"></script>
  
    <body>
      <div class="container">
-       <h2>Minha lista de livros_2</h2>
-       <div class="input-group">
-         <input placeholder="adicione um livro" type="text" class="js-novo-livro form-control"><br>
-         <input placeholder="Nome do autor" type="text" class="js-novo-autor form-control"> <br>
-            <span class="input-group-btn">
-                <button  @click="addItem" class="js-add btn btn-default" type="button">Adicionar!</button>
-           </span>
-       </div>
-     
-       <ul>
+       <h2>Minha lista de Albúns</h2>      
+         <input placeholder="adicione um Album" type="text" class="js-novo-livro form-control"><br>
+         <input placeholder="Single" type="text" class="js-novo-autor form-control"> <br>          
+         <button  @click="addItem" class="js-add btn btn-primary btn-block" type="button">Adicionar!</button>    
+        <ul>
          <li>
            <div class="checkbox">
                 <label>
                  <input class="js-livro" name="list" type="checkbox" />
-                 <big>Alice no País das Maravilhas</big> - <small>Lewis Carrol</small>
+                 <big>Judas Priest</big> - <small>Turbo Lover</small>
                </label>
            </div>
          </li>
-         <li>           <div class="checkbox">
+        <li>           
+            <div class="checkbox">
                 <label>
-                 <input class="js-livro" name="list" type="checkbox">
-                 <big>A Menina que Roubava Livros</big> - <small>Markus Zusak</small>
+                   <input class="js-livro" name="list" type="checkbox">
+                   <big>OverKill</big> - <small>Markus Zusak</small>
+               </label>
+           </div>
+		</li>
+		
+		<div id="app" class="container">
+			<h2>{{cabecalho}}</h2>
+			<ul>
+				<li v-for="livro in livros" v-bind:class="{ 'removido': livro.checked }">
+					<div class="checkbox">
+						<label>
+							<input class="js-livro" name="list" type="checkbox" v-model="livro.checked">
+							<big>{{livro.titulo}}</big> - <small>{{livro.autor}}</small>
+						</label>
+					</div>
+				</li>
+			</ul>
+			<div class="footer"><hr/>
+				<em>Modifique o título da lista:</em>
+				<input v-model="cabecalho"/>
+			</div>
+		</div>
+		
+        <li class="removido">
+           <div class="checkbox">
+                <label>
+                    <input class="js-livro"  name="list"  type="checkbox" checked>
+                    <big>CandleMass</big> - <small>NightFall</small>
                 </label>
            </div>
-         </li>
-         <li class="removido">
-           <div class="checkbox">
-             <label>
-                 <input class="js-livro"  name="list"  type="checkbox" checked>
-                 <big>O Senhor dos Anéis - As Duas Torres</big> - <small>J. R. R. Tolkien</small>
-               </label>
-           </div>
-         </li>
+        </li>        
        </ul>
      </div>
    </body>
-   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-   <script type="text/javascript" src="js/index.js"></script>
  </html>
